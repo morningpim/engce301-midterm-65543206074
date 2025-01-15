@@ -30,7 +30,9 @@ Using initial user to login:
     Password: 1234
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://10.21.47.39/pimpa_na65
+PORT=8080:3000](http://10.21.47.39/pimpa_na65
+PORT=8080:3000) to view it in the browser.
 
 
 ## Server
@@ -40,5 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
     2. npm run server
 
 Runs the API in the development mode.\
-Open [http://localhost:8081](http://localhost:8081) to view it in the browser.
+Open [http://10.21.47.39/pimpa_na65
+PORT=8080:8081](http://10.21.47.39/pimpa_na65
+PORT=8080:8081) to view it in the browser.
 

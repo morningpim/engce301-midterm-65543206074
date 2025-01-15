@@ -10,6 +10,7 @@ console.log(process.env.APP_NAME);
 console.log(process.env.API_URL); 
 console.log(process.env.PORT); 
 
+
 class Server {
   constructor() {
 
@@ -17,10 +18,12 @@ class Server {
       this.key = "server.key";
       this.cert = "server.crt";
     }
-    else{
+    else
+    if (process.env.NODE_ENV == "production"){
       this.key = "/etc/ssl/server.key";
       this.cert = "/etc/ssl/server.crt";
     }
+
 
     // Load SSL Certificates
     const sslOptions = {
@@ -43,6 +46,14 @@ class Server {
   }
 
   middlewares() {
+    
+    if (process.env.NODE_ENV == "development"){
+      this.key = "server.key";
+      this.cert = "server.crt";
+      console.log("Rejecting node tls");
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    }
+
     this.app.use(cors());
     this.app.use(express.json());
 
@@ -57,11 +68,13 @@ class Server {
     this.app.use(this.paths.auth, require("../routes/auth"));
     this.app.use(this.paths.homepage, require("../routes/homepage"));
     // Catch all requests that don't match any route
+ /*   
     this.app.get("*", (req, res) => {
       res.sendFile(
         path.join(__dirname, "../../client/build/index.html")
       );
     });
+*/
   }
 /*
   listen() {
